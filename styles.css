@@ -1,0 +1,608 @@
+/* ---------- RESET & BASE ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Light Mode Variables */
+    --bg-primary: #FFEAD9;
+    --bg-secondary: #ffffff;
+    --bg-card: #ffffff;
+    --text-primary: #043C21;
+    --text-secondary: #1e4a2f;
+    --accent-primary: #4BE663;
+    --accent-secondary: #9EDBB4;
+    --navbar-bg: #043C21;
+    --navbar-text: #FFEAD9;
+    --border-color: rgba(4, 60, 33, 0.1);
+    --shadow: rgba(4, 60, 33, 0.1);
+    --timeline-bg: rgba(158, 219, 180, 0.15);
+}
+
+body.dark {
+    /* Dark Mode Variables */
+    --bg-primary: #0a1e14;
+    --bg-secondary: #0d2b1e;
+    --bg-card: #0d2b1e;
+    --text-primary: #4BE663;
+    --text-secondary: #9EDBB4;
+    --accent-primary: #4BE663;
+    --accent-secondary: #2d6a4f;
+    --navbar-bg: #021a0e;
+    --navbar-text: #FFEAD9;
+    --border-color: rgba(75, 230, 99, 0.2);
+    --shadow: rgba(0, 0, 0, 0.3);
+    --timeline-bg: rgba(45, 106, 79, 0.3);
+}
+
+body {
+    font-family: system-ui, 'Segoe UI', 'Inter', -apple-system, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    scroll-behavior: smooth;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ---------- DARK MODE TOGGLE ---------- */
+.dark-mode-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: var(--navbar-bg);
+    color: var(--accent-primary);
+    border: 2px solid var(--accent-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.dark-mode-toggle:hover {
+    transform: scale(1.1);
+    background-color: var(--accent-primary);
+    color: var(--navbar-bg);
+}
+
+/* ---------- NAVBAR STYLES ---------- */
+.navbar {
+    background-color: var(--navbar-bg);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 20px var(--shadow);
+    transition: background-color 0.3s ease;
+}
+
+.nav-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo a {
+    color: var(--accent-primary);
+    font-size: 1.7rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+    transition: opacity 0.2s ease;
+}
+
+.logo a:hover {
+    opacity: 0.85;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-menu li a {
+    color: var(--navbar-text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    transition: all 0.2s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-menu li a:hover {
+    color: var(--accent-primary);
+    border-bottom-color: var(--accent-secondary);
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--navbar-text);
+    border-radius: 3px;
+    transition: all 0.2s ease-in-out;
+}
+
+/* ---------- SECTION STYLES ---------- */
+.section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem;
+    text-align: center;
+    scroll-margin-top: 80px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.section-content {
+    max-width: 1200px;
+    width: 100%;
+}
+
+.section h2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    font-weight: 700;
+}
+
+/* Fade-in animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---------- ABOUT SECTION (ORIGINAL - centered text) ---------- */
+.about-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.about-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+/* ---------- EDUCATION SECTION ---------- */
+.education-timeline {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.edu-item {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: var(--bg-card);
+    border-radius: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.edu-item:hover {
+    transform: translateX(10px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.edu-year {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent-primary);
+    min-width: 80px;
+}
+
+.edu-detail h3 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.edu-detail p {
+    color: var(--text-secondary);
+}
+
+/* ---------- TIMELINE CONTAINER ---------- */
+.timeline-container {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    background: var(--timeline-bg);
+    border-radius: 2rem;
+    padding: 2rem;
+    transition: background 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---------- SLIDER CONTROLS ---------- */
+.slider-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.slider-btn {
+    background-color: var(--navbar-bg);
+    color: var(--accent-primary);
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-btn:hover {
+    background-color: var(--accent-primary);
+    color: var(--navbar-bg);
+    transform: scale(1.05);
+}
+
+.slider-wrapper {
+    flex: 1;
+    min-width: 200px;
+}
+
+#yearSlider {
+    width: 100%;
+    height: 5px;
+    border-radius: 5px;
+    background: var(--accent-secondary);
+    outline: none;
+    -webkit-appearance: none;
+}
+
+#yearSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    cursor: pointer;
+    border: 2px solid var(--navbar-bg);
+    transition: 0.1s;
+}
+
+#yearSlider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* ---------- CURRENT YEAR BADGE ---------- */
+.current-year-badge {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    flex-shrink: 0;
+}
+
+#currentYearDisplay {
+    display: inline-block;
+    background: var(--navbar-bg);
+    color: var(--accent-primary);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+/* ---------- PROJECTS DISPLAY (FIXED HEIGHT - NO MOVEMENT) ---------- */
+.projects-display {
+    background: var(--bg-card);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    /* CRITICAL: Fixed height prevents any up/down movement */
+    height: 350px;
+    box-shadow: 0 8px 20px var(--shadow);
+    transition: background 0.3s ease;
+    overflow-y: auto;
+    position: relative;
+}
+
+/* Projects content stays inside fixed box */
+.projects-content {
+    text-align: left;
+    display: block;
+    width: 100%;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid var(--accent-secondary);
+    border-top-color: var(--accent-primary);
+    border-radius: 50%;
+    margin: 2rem auto;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.project-card {
+    background: var(--bg-secondary);
+    border-left: 5px solid var(--accent-primary);
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px var(--shadow);
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.4s ease;
+}
+
+.project-card:last-child {
+    margin-bottom: 0;
+}
+
+.project-card:hover {
+    transform: translateX(8px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.project-card h3 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.project-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.project-card .project-role {
+    font-size: 0.85rem;
+    color: var(--accent-primary);
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- SKILLS SECTION ---------- */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.skill-category {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    min-width: 250px;
+    transition: transform 0.3s ease;
+}
+
+.skill-category:hover {
+    transform: translateY(-5px);
+}
+
+.skill-category h3 {
+    color: var(--accent-primary);
+    margin-bottom: 1rem;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    justify-content: center;
+}
+
+.skill-tag {
+    background: var(--navbar-bg);
+    color: var(--accent-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    cursor: default;
+}
+
+.skill-tag:hover {
+    background: var(--accent-primary);
+    color: var(--navbar-bg);
+    transform: translateY(-2px);
+}
+
+/* ---------- CONTACT SECTION ---------- */
+.contact-container p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    background: var(--navbar-bg);
+    color: var(--accent-primary);
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.social-link:hover {
+    background: var(--accent-primary);
+    color: var(--navbar-bg);
+    transform: translateY(-3px);
+}
+
+/* ---------- FOOTER ---------- */
+.footer {
+    text-align: center;
+    padding: 2rem;
+    background: var(--navbar-bg);
+    color: var(--navbar-text);
+}
+
+/* ---------- RESPONSIVE DESIGN ---------- */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.8rem 1.5rem;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: var(--navbar-bg);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s ease;
+        box-shadow: 0 10px 20px var(--shadow);
+        padding: 2rem 0;
+        gap: 1.5rem;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-menu li a {
+        font-size: 1.2rem;
+        display: block;
+        padding: 0.5rem;
+    }
+
+    .section h2 {
+        font-size: 2.2rem;
+    }
+
+    /* FIXED HEIGHT FOR MOBILE */
+    .projects-display {
+        padding: 1rem;
+        height: 400px;
+    }
+
+    .slider-controls {
+        flex-direction: column;
+    }
+
+    .slider-wrapper {
+        width: 100%;
+    }
+
+    .edu-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+
+    .skills-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .skill-category {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section {
+        padding: 2rem 1rem;
+    }
+    .section h2 {
+        font-size: 1.8rem;
+    }
+    .project-card h3 {
+        font-size: 1rem;
+    }
+    .current-year-badge #currentYearDisplay {
+        font-size: 1.1rem;
+        padding: 0.3rem 1rem;
+    }
+    .about-text p {
+        font-size: 1rem;
+    }
+    /* EVEN TALLER FOR SMALL PHONES */
+    .projects-display {
+        height: 450px;
+    }
+}
